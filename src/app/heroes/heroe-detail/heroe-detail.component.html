@@ -1,0 +1,26 @@
+<div class="container mt-2">
+  <div class="card">
+      <div class="row justify-content-md-center">
+          <h2>HEROES</h2>
+      </div>
+      <div class="row justify-content-md-center">
+          <div class="col-md-4">
+              <h3>"{{hero.name}}"</h3>
+              <div>
+                <label><b>Id: </b> </label>{{hero.id}}
+              </div>
+              <div class="form-group">
+                <label><b>Name: </b> </label>
+                <input pattern="[A-za-z]*" required class="form-control" [class.error]="nameHero?.errors" [(ngModel)]="hero.name"
+                #nameHero="ngModel">
+              </div>
+              {{nameHero.errors | json}}
+          </div>  
+      </div>
+  </div> 
+  <div class="row justify-content-md-center">
+    <button (click)="deleteHero(hero)" class="btn btn-danger mt-2">Eliminar</button>
+    <button (click)="goToHeroes()" class="btn btn-primary mt-2 ml-2">Volver</button> 
+    <button (click)="updateHero()" [disabled]="!nameHero.valid || nameHero.pristine" [ngClass]="{'btn-warning': nameHero.valid || !nameHero.pristine}" class="btn mt-2 ml-2">Guardar</button>
+  </div>
+</div>

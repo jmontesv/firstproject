@@ -1,0 +1,10 @@
+
+<p>Mi cumpleaños es {{ cumpleanos | date }}</p>
+<p>Mi cumpleaños es {{ cumpleanos | date:"fullDate" }}</p>
+<p>Mi cumpleaños es {{ cumpleanos | date:"shortDate" }}</p>
+
+<p>Mi cumpleaños es {{ cumpleanos | date:format }}</p>
+<button (click)="cambiarFormato()">Cambiar formato</button>
+
+<h2>Power Booster</h2>
+    <p>Super power boost: {{2 | exponentialStrength: 14}}</p> 

@@ -1,0 +1,57 @@
+
+<!-- form templeate-driven-->
+<div class="container">
+  <label>input Requerido con 4 caracteres</label>
+  <div class="row">
+    <div class="col-md-6 center-block">
+      <input type="text" required minlength="4" class="form-control" ngModel name="inoreactive" #input="ngModel" >
+      <div *ngIf="input?.errors"  class="alert alert-warning">
+        <p *ngIf="input?.errors?.required" >Campo requerido</p>
+        <p *ngIf="input?.errors?.minlength">Mínimo 4 caracteres</p>
+      </div>
+      <p><b>{{input.status}}</b></p>
+    </div>
+  </div>
+</div> 
+
+<!-- form reactive with form-group & form-control-->
+<div class="container">
+    <form [formGroup]="perfilform">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="">
+              <label>firstName</label>
+              <input class="form-control" type="text" formControlName="firstName" required>
+              <div *ngIf="get('firstName').errors" class="alert alert-danger">
+                <p *ngIf="get('firstName').errors.required">El campo es obligatorio.</p>
+              </div>
+            </div>
+            
+            <label>LastName</label>
+            <input class="form-control" type="text" formControlName="lastName">
+            <div *ngIf="get('lastName').errors" class="alert alert-danger">
+              <p *ngIf="get('lastName').errors.maxlength">Máximo 10 caracteres</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div formGroupName="address" class="form-group">
+            <h4>Address</h4>
+            <label>Street</label>
+            <input class="form-control" type="text" formControlName="street">
+            <label>City</label>
+            <input class="form-control" type="text" formControlName="city">
+            <label>ZIP</label>
+            <input class="form-control" type="text" formControlName="zip">
+            <div *ngIf="get('address.zip').errors" class="alert alert-danger">
+                <p *ngIf="get('address.zip').errors.pattern">No es un código postal</p>    
+            </div>
+          </div>
+              <p><b>{{perfilform.status}} - {{(get('address.zip').errors || {}).pattern | json }}</b></p>
+        </div>
+      </div>
+    </form>  
+</div>

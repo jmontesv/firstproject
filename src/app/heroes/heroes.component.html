@@ -1,0 +1,20 @@
+<div class="container mt-2">
+    <h2>My Heroes</h2>           
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let heroe of heroes$ | async" [class.selected]="selectedId === heroe.id">
+          <td>{{heroe.id}}</td>
+          <td>
+          <a [routerLink]="['/heroe', heroe.id]">
+          <span> {{heroe.name}}</span></a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

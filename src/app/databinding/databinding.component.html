@@ -1,0 +1,19 @@
+<h2 [style.color]="!style ? 'green' : 'red'">titulo definido por style</h2>
+<p>
+  <button 
+    [ngClass]="{si: estadoPositivo, no: !estadoPositivo}"
+    (click)="cambiaEstado()"
+  >{{texto}}</button>
+</p>
+<input type="text" [(ngModel)]="pixeles" plceholder="Intruduce los pixeles en formato XXpx">
+<b [style.font-size]="pixeles">texto dinámico </b><br>  
+<ul>
+  <li><a (click)="color='red'">Fondo a rojo</a></li>
+  <li><a (click)="color='green'">Fondo a verde</a></li>
+  <li><a (click)="color='yellow'">Fondo a amarillo</a></li>
+</ul>
+<div [style.background-color]="color">
+  <b>Texto dentro del div Texto dentro del div Texto dentro del div</b>
+  <input #box class="form-control" [(ngModel)]="valueblank"  (keyup.enter)="onEnter(box.value)">
+  <p>{{value}}</p>
+</div>          
