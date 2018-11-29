@@ -8,23 +8,25 @@ import { TareaService } from '../tarea.service';
 })
 export class FormTareaComponent implements OnInit {
   public defaultDate: string;
+  public dateNow: number;
 
-  constructor(private tareaservice: TareaService) {
+  constructor(private tareaservice: TareaService) { this.dateNow = Date.now(); }
+
+  ngOnInit() {
     const now = Date.now();
     const nowDate = new Date(now);
     this.defaultDate = nowDate.toLocaleDateString()
       .split('/').reverse().join('-');
-   }
-
-  ngOnInit() {
   }
 
   addTask(nombretarea: HTMLInputElement, descripciontarea: HTMLInputElement,
     timecontrol: HTMLInputElement, datecontrol: HTMLInputElement) {
-    this.tareaservice.addTask(nombretarea.value, descripciontarea.value, timecontrol.value, datecontrol.value);
-    nombretarea.value = '' ;
-    descripciontarea.value = '';
-    timecontrol.value = '';
-    return false;
+      this.tareaservice.addTask(nombretarea.value, descripciontarea.value,
+      timecontrol.value, datecontrol.value);
+      nombretarea.value = '' ;
+      descripciontarea.value = '';
+      timecontrol.value = '';
+      datecontrol.value = this.defaultDate;
+      return false;
   }
  }

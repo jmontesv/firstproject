@@ -17,8 +17,14 @@
          <input type="text" class="form-control mb-2" name="descripcion" #descripciontarea>
          <label><b>Fecha</b></label>
          <input type="time" value="00:00" class="form-control" name="time" #timecontrol>
-         <input type="date" [value]="defaultDate" class="form-control" #datecontrol>
-         <button [disabled]="taskname?.errors" (click)="addTask(nombretarea,descripciontarea,timecontrol
+         <input type="date" [value]="defaultDate" class="form-control"  #datecontrol>
+         <ng-template [ngIf]="datecontrol.valueAsNumber < dateNow">
+          <div class="alert alert-danger mt-1">
+            <p>Debe ser una fecha mayor a la actual.</p>
+          </div>
+         </ng-template>
+         <button [disabled]="taskname?.errors ||datecontrol.valueAsNumber < dateNow" 
+         (click)="addTask(nombretarea,descripciontarea,timecontrol
          ,datecontrol)" 
          class="btn btn-primary btn-block mt-2">Añadir</button>
         </div> 

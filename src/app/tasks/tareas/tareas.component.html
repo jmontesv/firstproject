@@ -1,50 +1,32 @@
 <div class="container">
   <div class="container p-4">
-   <div class="row justify-content-md-center">
-    <div class="col-md-6">
-     <div class="alert alert-info"> 
-      <h6>Tareas pendientes: <span class="badge badge-secondary">{{totalTasks}}</span></h6>
-      <div>
-        <select ngModel name="orderby" #orderstate="ngModel">
-          <option value="false">No ordenar</option>
-          <option value="true">Ordenar por fecha y hora</option>
-        </select>
-      </div>
-      <div *ngIf="!totalTasks">
-          <h4>No tienes ninguna tarea!</h4>
-          <button (click)="goToForm()" class="btn btn-success">Añadir</button>
-      </div>
-     </div>
-     <div *ngIf="orderstate.value==='false'|| orderstate.value===''">
-        <div *ngFor="let task of tasksList" class="alert alert-warning">
-      <button type="button" class="close" (click)="deleteTask(task)" data-dismiss="alert"
-        aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-       </button>
-      <h4>{{task.nametask}}</h4>
-      <p>{{task.descriptiontask}}</p>
-      <pre style="font-size: 40px" class="text-center text-dark">{{task.datetask | date:'HH:mm' }}</pre>
-      <div class="text-right">
-        <strong>{{task.datetask  | date:'dd/MM/yyyy'}}</strong> 
-      </div>
-      </div>
-    </div>
-      <div *ngIf="orderstate.value==='true'">
-        <div class="alert alert-warning" *ngFor="let task of (tasksList | orderbyhour)">
-          <button type="button" class="close" (click)="deleteTask(task)" data-dismiss="alert"
-           aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+        <div class="alert alert-info">
+          <h6>Tareas pendientes: <span class="badge badge-secondary">{{totalTasks}}</span></h6>
+          <div>
+            <select [(ngModel)]="order" name="orderby" #orderstate="ngModel">
+              <option value="false">No ordenar</option>
+              <option value="true">Ordenar por fecha y hora</option>
+            </select>
+          </div>
+          <div *ngIf="!totalTasks">
+            <h4>No tienes ninguna tarea!</h4>
+            <button (click)="goToForm()" class="btn btn-success">Añadir</button>
+          </div>
+        </div>
+        <div class="alert alert-warning" *ngFor="let task of (tasksList | orderbyhour:order)">
+          <button type="button" class="close" (click)="deleteTask(task)" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
           <h4>{{task.nametask}}</h4>
           <p>{{task.descriptiontask}}</p>
           <pre style="font-size: 40px" class="text-center text-dark">{{task.datetask | date:'HH:mm' }}</pre>
           <div class="text-right">
-            <strong>{{task.datetask  | date:'dd/MM/yyyy'}}</strong> 
+            <strong>{{task.datetask | date:'dd/MM/yyyy'}}</strong>
           </div>
         </div>
       </div>
     </div>
-   </div>
   </div>
- </div> 
- 
+</div>
