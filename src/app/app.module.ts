@@ -12,7 +12,10 @@ import { ObserviceService } from './testobservables/observice.service';
 
 import { AppComponent } from './app.component';
 
+import { DateValidator } from './tasks/form-tarea/date-validation.directive';
+import { TimeValidator } from './tasks/form-tarea/time-validation.directive';
 import { Orderbyhourpipe } from './tasks/tareas/orderbyhora.pipe';
+
 import { FormTareaComponent } from './tasks/form-tarea/form-tarea.component';
 import { TareasComponent } from './tasks/tareas/tareas.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -50,7 +53,9 @@ import { ObservablesComponent } from './observables/observables.component';
     ParentTimerComponent,
     FormsComponent,
     ObservablesComponent,
-    Orderbyhourpipe
+    Orderbyhourpipe,
+    DateValidator,
+    TimeValidator
   ],
   imports: [
     BrowserModule,

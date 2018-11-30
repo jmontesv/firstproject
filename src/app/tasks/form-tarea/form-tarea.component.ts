@@ -7,26 +7,26 @@ import { TareaService } from '../tarea.service';
   styleUrls: ['./form-tarea.component.css']
 })
 export class FormTareaComponent implements OnInit {
-  public defaultDate: string;
-  public dateNow: number;
 
-  constructor(private tareaservice: TareaService) { this.dateNow = Date.now(); }
+  public name: string;
+  public description: string;
+  public time: string;
+  public date: string;
 
-  ngOnInit() {
+  constructor(private tareaservice: TareaService) {
     const now = Date.now();
     const nowDate = new Date(now);
-    this.defaultDate = nowDate.toLocaleDateString()
+
+    this.date = nowDate.toLocaleDateString()
       .split('/').reverse().join('-');
+    this.time = nowDate.toLocaleTimeString()
+      .substr(0, 5);
   }
 
-  addTask(nombretarea: HTMLInputElement, descripciontarea: HTMLInputElement,
-    timecontrol: HTMLInputElement, datecontrol: HTMLInputElement) {
-      this.tareaservice.addTask(nombretarea.value, descripciontarea.value,
-      timecontrol.value, datecontrol.value);
-      nombretarea.value = '' ;
-      descripciontarea.value = '';
-      timecontrol.value = '';
-      datecontrol.value = this.defaultDate;
-      return false;
+  ngOnInit() {}
+
+  addTask() {
+    this.tareaservice.addTask(this.name, this.description, this.time, this.date);
+    return false;
   }
- }
+}

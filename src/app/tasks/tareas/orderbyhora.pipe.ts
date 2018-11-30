@@ -1,9 +1,9 @@
-import { Pipe, PipeTransform, Input  } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { Task } from '../tarea';
 
 @Pipe({ name: 'orderbyhour' })
 export class Orderbyhourpipe implements PipeTransform {
-    transform(tasks: Array<Task>, order: string) {
+    transform(tasks: Array<Task>, order: boolean) {
         if (order) {
             return tasks.map((tarea: Task) => {
                 return { ...tarea, datetask: this.getTime(tarea.datetask) };
