@@ -1,14 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
 
-import { Hero } from './hero';
 import { HEROES } from './scriptheroes';
+import { Hero } from './hero';
 
 import { Observable, of, from } from 'rxjs';
-import { filter, map, single } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ServiceheroService implements OnInit {
   constructor() {
   }

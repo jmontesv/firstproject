@@ -1,23 +1,26 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from './app-routing.module';
+
+import { createCustomElement } from '@angular/elements';
+import { MessageComponent } from './alert-message';
+
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeroesModule } from './heroes/heroes.module';
-
-import { TareaService } from './tasks/tarea.service';
-import { ServiceheroService } from './heroes/servicehero.service';
+import { PokemonModule } from './pokemon/pokemon.module';
+import { TasksModule } from './tasks/tasks.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ObserviceService } from './testobservables/observice.service';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
-import { DateValidator } from './tasks/form-tarea/date-validation.directive';
-import { TimeValidator } from './tasks/form-tarea/time-validation.directive';
-import { Orderbyhourpipe } from './tasks/tareas/orderbyhora.pipe';
+import { ExponentialStrengthPipe } from './pipes/pipes-component/exponential-pipe';
 
-import { FormTareaComponent } from './tasks/form-tarea/form-tarea.component';
-import { TareasComponent } from './tasks/tareas/tareas.component';
+import { HeaderComponent } from './header/header.component';
+import { InicioComponent } from './inicio.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TestobservablesComponent } from './testobservables/testobservables.component';
 import { DatabindingComponent } from './databinding/databinding.component';
@@ -27,19 +30,21 @@ import { NameChildComponent } from './name-child/name-child.component';
 import { VersionParentComponent } from './version/version-parent/version-parent.component';
 import { VersionChildComponent } from './version/version-child/version-child.component';
 import { PipesComponentComponent } from './pipes/pipes-component/pipes-component.component';
-import { ExponentialStrengthPipe } from './pipes/pipes-component/exponential-pipe';
 import { TimerComponent } from './timer/timer/timer.component';
 import { ParentTimerComponent } from './timer/parent-timer/parent-timer.component';
 import { FormsComponent } from './forms/forms.component';
 import { ObservablesComponent } from './observables/observables.component';
-
+import { LoadingComponent } from './loading/loading.component';
+import { AuthService } from './authservice.service';
+import { CanDeactivateGuard } from './tasks/form-tarea/candeactiveguard.service.';
+import { PracobsComponent } from './practica-observables.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormTareaComponent,
-    TareasComponent,
+    HeaderComponent,
     DashboardComponent,
+    InicioComponent,
     TestobservablesComponent,
     DatabindingComponent,
     OnChangesComponent,
@@ -53,24 +58,31 @@ import { ObservablesComponent } from './observables/observables.component';
     ParentTimerComponent,
     FormsComponent,
     ObservablesComponent,
-    Orderbyhourpipe,
-    DateValidator,
-    TimeValidator
+    LoadingComponent,
+    MessageComponent,
+    PracobsComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
-    HeroesModule,
-    HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
+    HttpClientModule,
+    HeroesModule,
+    PokemonModule,
+    TasksModule,
     AppRoutingModule
   ],
-  providers: [
-    ObserviceService,
-    TareaService,
-    ServiceheroService
-  ],
-  bootstrap: [AppComponent]
+  providers: [ ObserviceService, AuthService, CanDeactivateGuard ],
+  bootstrap: [ AppComponent ],
+  entryComponents: [ MessageComponent ]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private injector: Injector) {
+    const el = createCustomElement( MessageComponent, { injector: this.injector });
+    customElements.define('message-element', el);
+
+  }
+}

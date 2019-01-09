@@ -3,10 +3,7 @@ import { ServiceheroService } from '../servicehero.service';
 import { Hero } from '../hero';
 import { EventEmitter } from '@angular/core';
 // import { Validators, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-heroe-detail',
@@ -14,7 +11,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./heroe-detail.component.css']
 })
 export class HeroeDetailComponent implements OnInit {
-  private hero: Hero;
+  public hero: Hero;
   constructor(private route: ActivatedRoute,
               private router: Router,
               private heroService: ServiceheroService) {   }

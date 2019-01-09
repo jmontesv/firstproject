@@ -1,32 +1,52 @@
-<div class="container">
-  <div class="container p-4">
-    <div class="row justify-content-md-center">
-      <div class="col-md-6">
-        <div class="alert alert-info">
-          <h6>Tareas pendientes: <span class="badge badge-secondary">{{totalTasks}}</span></h6>
-          <div>
-            <select [(ngModel)]="order" name="orderby" #orderstate="ngModel">
-              <option value="false">No ordenar</option>
-              <option value="true">Ordenar por fecha y hora</option>
-            </select>
-          </div>
-          <div *ngIf="!totalTasks">
-            <h4>No tienes ninguna tarea!</h4>
-            <button (click)="goToForm()" class="btn btn-success">Añadir</button>
-          </div>
+<div class="container p-4">
+  <div class="row justify-content-md-center">
+    <div *ngIf="selectedTask" class="col-md-3">
+      <app-tarea-detail [task]="selectedTask"></app-tarea-detail>
+    </div>
+    <div class="col-md-6">
+      <div class="alert alert-info">
+        <h6>Tareas pendientes: <span class="badge badge-secondary">{{totalTasks}}</span></h6>
+        <div>
+          <select [(ngModel)]="order" name="orderby" #orderstate="ngModel">
+            <option value="false">No ordenar</option>
+            <option value="true">Ordenar por fecha y hora</option>
+          </select>
         </div>
-        <div class="alert alert-warning" *ngFor="let task of (tasksList | orderbyhour:order)">
-          <button type="button" class="close" (click)="deleteTask(task)" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4>{{task.nametask}}</h4>
-          <p>{{task.descriptiontask}}</p>
-          <pre style="font-size: 40px" class="text-center text-dark">{{task.datetask | date:'HH:mm' }}</pre>
-          <div class="text-right">
-            <strong>{{task.datetask | date:'dd/MM/yyyy'}}</strong>
-          </div>
+        <div *ngIf="!totalTasks">
+          <h4>No tienes ninguna tarea!</h4>
+          <button (click)="goToForm()" class="btn btn-success">Añadir</button>
         </div>
+      </div>
+      <div class="alert alert-warning" *ngFor="let task of (tasksList | orderbyhour:order)">
+        <button type="button" class="close" (click)="deleteTask(task)" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4>{{task.nametask}}</h4>
+        <div>
+          <p style="display: block;">{{task.descriptiontask}}</p>
+        </div>
+        <pre style="font-size: 40px" class="text-center text-dark">{{task.datetask | date:'HH:mm' }}</pre>
+        <div class="text-right">
+          <strong>{{task.datetask | date:'dd/MM/yyyy'}}</strong>
+        </div>
+        <button class="btn btn-warning" (click)="selectedTask=task">Editar</button>
       </div>
     </div>
   </div>
 </div>
+<ng-template #contentModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Eliminar tarea</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h6>¿Está seguro de que desea eliminar la tarea?</h6>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close(true)">Eliminar</button>
+        <button type="button" class="btn btn-success" (click)="modal.close(false)">Deshacer</button>
+    </div>
+  </ng-template>
+  

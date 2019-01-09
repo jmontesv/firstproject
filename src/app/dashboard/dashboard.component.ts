@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../heroes/hero';
 import { ServiceheroService } from '../heroes/servicehero.service';
 import { Observable } from 'rxjs';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +13,12 @@ import { Observable } from 'rxjs';
 export class DashboardComponent implements OnInit {
 
   heroes$: Observable<Array<Hero>>;
-  constructor(private heroService: ServiceheroService) {
-    this.listarheroes();
+  constructor(private heroService: ServiceheroService, private elem: ElementRef) {
   }
   ngOnInit() {
-      this.heroes$ = this.heroService.getHeroes();
-  }
-  listarheroes() {
-    console.log(this.heroes$);
+    this.heroes$ = this.heroService.getHeroes();
+    this.elem.nativeElement.onclick = (event) => {
+      console.log(event);
+    };
   }
 }

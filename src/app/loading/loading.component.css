@@ -1,0 +1,20 @@
+.bubble {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 50px;
+}
+.cont {
+    z-index: 10000;
+    position: relative;
+    top: 0;
+    left:0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+
+}

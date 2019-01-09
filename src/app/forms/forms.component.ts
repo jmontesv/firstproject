@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'; // El objeto validators contiene métodos
 // con los que validamos nuestros formControlName.
 
@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'; // El objet
   styleUrls: ['./forms.component.css']
 })
 export class FormsComponent implements OnChanges, OnInit {
-
+  @ViewChild('inputtest') inputtest;
   perfilform: FormGroup;
   inoreactive: string;
 
@@ -16,6 +16,7 @@ export class FormsComponent implements OnChanges, OnInit {
   ngOnChanges() {}
 
   ngOnInit() {
+    console.log(this.inputtest);
     this.perfilform = new FormGroup({
       'firstName': new FormControl('', Validators.required),
       'lastName': new FormControl('', Validators.maxLength(10)),

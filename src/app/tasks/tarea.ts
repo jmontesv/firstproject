@@ -12,9 +12,9 @@ export class Task {
     }
 
     getFormatDate(hora: string, fecha: string): Date {
-    const sFecha = fecha.split('-');
-    const sHora = hora.split(':');
-    return new Date(parseFloat(sFecha[0]), parseFloat(sFecha[1]) - 1 ,
-    parseFloat(sFecha[2]), parseFloat(sHora[0]) , parseFloat(sHora[1]));
+        const sFecha = fecha.split('-');
+        const sHora = hora.split(':');
+        return new Date(parseFloat(sFecha[0]), parseFloat(sFecha[1]) - 1,
+            parseFloat(sFecha[2]), parseFloat(sHora[0]), parseFloat(sHora[1]));
     }
 }

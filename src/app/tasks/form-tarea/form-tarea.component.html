@@ -4,26 +4,26 @@
       <form #f="ngForm">
         <div class="alert alert-info">
           <legend class="text-center" style="color:darkblue;">Formulario tareas </legend>
-            <label><b>Nombre*</b></label>
-            <input type="text" class="form-control" [(ngModel)]="name" name="nombre" #taskName="ngModel" required>
-            <div class="alert alert-danger mt-1" *ngIf="taskName?.errors?.required">
-              <p>El campo es requerido.</p>
-            </div>
+          <label><b>Nombre*</b></label>
+          <input type="text" class="form-control" [(ngModel)]="name" name="nombre" #taskName="ngModel" required>
+          <div class="alert alert-danger mt-1" *ngIf="taskName?.errors?.required && !taskName.pristine">
+            <p>El campo es requerido.</p>
+          </div>
           <div>
             <label><b>Descripción</b></label>
-            <input type="text" class="form-control mb-2" [(ngModel)]="description" name="descripcion"
-             #taskDescription="ngModel">
+            <textarea class="form-control mb-2" [(ngModel)]="description" name="descripcion" #taskDescription="ngModel"></textarea>
             <label><b>Fecha</b></label>
-            <input type="time" class="form-control" [(ngModel)]="time" name="hora" #taskTime="ngModel" appTimeValidation>
-            <div class="alert alert-danger mt-1" *ngIf="taskTime?.errors">
-              <p>La fecha debe ser mayor a la actual.</p>
+            <input type="time" class="form-control" [(ngModel)]="time" name="hora" #taskTime="ngModel"
+              appTimeValidation>
+            <div class="alert alert-danger mt-1" *ngIf="taskTime?.errors || !taskTime.value">
+              <p>La hora debe ser mayor a la actual.</p>
             </div>
-            <input type="date" class="form-control" [(ngModel)]="date" name="fecha" #taskDate="ngModel" appDatevalidator>
+            <input type="date" class="form-control" [(ngModel)]="date" name="fecha" #taskDate="ngModel"
+              appDatevalidator>
             <div class="alert alert-danger mt-1" *ngIf="taskDate?.errors">
-                <p>La fecha debe ser mayor o igual a la actual.</p>
+              <p>La fecha debe ser mayor o igual a la actual.</p>
             </div>
-            <button [disabled]="!f.valid" (click)="addTask()"
-              class="btn btn-primary btn-block mt-2">Añadir</button>
+            <button [disabled]="!f.valid" (click)="addTask()" class="btn btn-primary btn-block mt-2">Añadir</button>
           </div>
         </div>
       </form>

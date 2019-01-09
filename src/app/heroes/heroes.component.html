@@ -1,5 +1,6 @@
 <div class="container mt-2">
-    <h2>My Heroes</h2>           
+  <h2>My Heroes</h2>
+    <input placeholder="Buscar heroe..."type="text" name="filter" class="form-control m-2" [(ngModel)]="filterValue">        
     <table class="table table-light">
       <thead>
         <tr>
@@ -8,13 +9,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let heroe of heroes$ | async" [class.selected]="selectedId === heroe.id">
+        <tr *ngFor="let heroe of (heroes | filterheroe:filterValue)" [class.selected]="selectedId === heroe.id">
           <td>{{heroe.id}}</td>
           <td>
           <a [routerLink]="['/heroe', heroe.id]">
           <span> {{heroe.name}}</span></a>
-        </td>
+          </td>
         </tr>
       </tbody>
     </table>
-  </div>
+</div>

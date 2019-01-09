@@ -1,0 +1,19 @@
+<div class="ml-2">
+  <div class="row">
+    <div class="col-md-4">
+      <form>
+        <div class="input-group mb-3">
+          <input name="name" 
+          [(ngModel)]="pokemonName" 
+          type="text" class="form-control" 
+          placeholder="Introduce el nombre del pokemon..."
+          #pokeName="ngModel">
+          <div class="input-group-append">
+            <button [disabled]="!pokeName.value" class="btn btn-outline-secondary" type="button" (click)="listpokemon.getPokemon(pokemonName)">Buscar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-list-pokemon #listpokemon></app-list-pokemon>

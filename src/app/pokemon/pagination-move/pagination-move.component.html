@@ -1,0 +1,31 @@
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" (click)="previousState()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <!--Hago un ngfor con el Array directamente declarado en la plantilla. Cada 
+      vez que el acumulador cambia, cambiará proporcionalmente en la plantilla  -->
+    <li *ngFor="let acc of [0,1,2,3,4]" class="page-item">
+      <a class="page-link" (click)="addStateMove(acumulator + acc)">{{acumulator + acc}}</a>
+    </li>
+    <!-- Otra opción sería esta
+    <li class="page-item"><a class="page-link" (click)="addStateMove(acumulator)">{{acumulator}}</a></li>
+    <li class="page-item"><a class="page-link" (click)="addStateMove(acumulator + 1)">{{acumulator + 1}}</a></li>
+    <li class="page-item"><a class="page-link" (click)="addStateMove(acumulator + 2)">{{acumulator + 2}}</a></li>
+    <li class="page-item"><a class="page-link" (click)="addStateMove(acumulator + 3)">{{acumulator + 3}}</a></li> 
+    -->
+    <li class="page-item">
+      <a class="page-link" (click)="nextState()" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+<!--<select [(ngModel)]="limitValue" name="limitmove">
+      <option *ngFor="let number of numbersLimit" [value]="number">{{number}}</option>
+</select>
+</nav>
+-->

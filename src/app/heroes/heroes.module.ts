@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HeroesRoutingModule } from './heroes-routing.module';
 
 import { HeroesComponent } from './heroes.component';
 import { HeroeDetailComponent } from './heroe-detail/heroe-detail.component';
 
-import { HeroesRoutingModule } from './heroes-routing.module';
-import { FormsModule } from '@angular/forms';
+import { ServiceheroService } from './servicehero.service';
+import { FilterheroePipe } from './filterheroe.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    HeroesRoutingModule,
-    FormsModule
+    FormsModule,
+    HeroesRoutingModule
   ],
   declarations: [
     HeroesComponent,
-    HeroeDetailComponent
-  ]
+    HeroeDetailComponent,
+    FilterheroePipe
+  ],
+  providers: [ ServiceheroService ]
 })
 export class HeroesModule { }

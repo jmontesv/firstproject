@@ -1,0 +1,17 @@
+.active { font-weight: bold; }
+
+#dropdown-menu-show {
+    display: block !important;
+}
+nav ul li a {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Happymonkey';
+}
+@media only screen and (min-width: 1000px){
+    .login-buttons {
+        position: absolute;
+        right: 0;
+    }    
+}

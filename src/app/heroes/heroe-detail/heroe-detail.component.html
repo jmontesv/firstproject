@@ -11,10 +11,12 @@
               </div>
               <div class="form-group">
                 <label><b>Name: </b> </label>
-                <input pattern="[A-za-z]*" required class="form-control" [class.error]="nameHero?.errors" [(ngModel)]="hero.name"
+                <input pattern="[A-za-z]*" required class="form-control" [(ngModel)]="hero.name"
                 #nameHero="ngModel">
+                <p  style="color: #a94442" *ngIf="nameHero?.errors">
+                  No se permiten números.
+                </p>
               </div>
-              {{nameHero.errors | json}}
           </div>  
       </div>
   </div> 

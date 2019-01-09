@@ -5,6 +5,11 @@
   <div class="row">
     <div class="col-md-6 center-block">
       <input type="text" required minlength="4" class="form-control" ngModel name="inoreactive" #input="ngModel" >
+  
+      <!--Prueba con viewchild--> 
+      <input type="text" required minlength="4" class="form-control" 
+      name="inoreactive" #inputtest>
+      
       <div *ngIf="input?.errors"  class="alert alert-warning">
         <p *ngIf="input?.errors?.required" >Campo requerido</p>
         <p *ngIf="input?.errors?.minlength">Mínimo 4 caracteres</p>

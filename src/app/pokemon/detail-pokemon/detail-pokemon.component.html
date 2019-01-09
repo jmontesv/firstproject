@@ -1,0 +1,25 @@
+  
+  <div *ngFor="let type of pokemon.types">
+    <div [ngStyle]="typeStyle" [class]="type.type.name" class="text-center rounded text-white p-4 mb-2">
+      <h3>{{type.type.name}}</h3>
+    </div>
+  </div>
+  <div style="height: 30px;" class="text-center bg-secondary rounded text-white p-1">
+    <h6>Habilidades</h6>
+  </div>
+  <div class="mt-1 p-2 text-white" style="background-color: #c2c4c5">
+    <div *ngFor="let ability of pokemon.abilities">
+      {{ability.ability.name}}
+    </div>
+  </div>
+  <div style="height: 30px;" class="text-center bg-secondary rounded text-white p-1 mt-1">
+    <h6>Movimientos</h6>
+  </div>
+  <div class="mt-1 p-2 text-white" style="background-color: #c2c4c5">
+    <div *ngFor="let move of (pokemon.moves | moveslimitPipe:stateArrayMove)">
+      {{move?.move?.name}}
+    </div>
+  </div>
+  <app-pagination-move *ngIf="showPagination" [moveArrayLength]="ArrayLength" (nextStateMove)="assignStateArrayMove($event)"></app-pagination-move>
+
+

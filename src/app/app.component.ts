@@ -1,5 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,24 +6,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title: string;
-  show: boolean;
-  constructor(private elem: ElementRef) {
-    this.title = 'Bienvenido';
-  }
+  constructor() { }
   ngOnInit() {
-    this.show = false;
-    this.elem.nativeElement.addEventListener('click', (function(event: MouseEvent) {
-      if (event && event.target && !(<HTMLElement>event.target).getAttribute('data-toggle')) {
-        this.show = false;
-      }
-    }).bind(this));
-  }
-  showSubmenu() {
-    if (!this.show) {
-      this.show = true;
-    } else {
-      this.show = false;
-    }
+    const message =  document.createElement('message-element') as any;
+    message.meg = 'mensaje desde el DOM estandar';
+    document.body.appendChild(message);
   }
 }

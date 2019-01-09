@@ -3,6 +3,7 @@ import { Observable, fromEvent, of, from } from 'rxjs';
 import { Hero } from '../heroes/hero';
 import { HEROES } from '../heroes/scriptheroes';
 import { filter, map } from 'rxjs/operators';
+import { HttpModule } from '@angular/http';
 
 @Component({
   selector: 'app-observables',

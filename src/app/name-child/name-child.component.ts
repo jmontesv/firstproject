@@ -7,18 +7,17 @@ import { Component, Input } from '@angular/core';
 })
 export class NameChildComponent {
 
-  private _name = ""
+  private _name = '';
 
   @Input()
   set name(name: string) {
-    this._name = (name && name.trim()) || '<no name set>'; //trim() Devuelve el string que le pasemos sin espacios.
+    this._name = name.trim() || '<no name set>';  // trim() Devuelve el string que le pasemos sin espacios.
   }
- 
+
   get name(): string { return this._name; }
-  
+
   constructor() { }
 
-  ngOnInit() {
-  }
+
 
 }
